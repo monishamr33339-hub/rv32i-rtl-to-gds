@@ -1,0 +1,12 @@
+# Set target GDS and explicitly define top cell
+source("results/final/rv32i_final.gds", "pipeline_datapath")
+
+# Specify output report file
+report("Sky130 DRC Report", "results/final/drc_report.lyrdb")
+
+# Path to Sky130 minimal DRC deck
+pdk_root = ENV['PDK_ROOT'] || '/home/chaos/PDKs'
+drc_deck = File.join(pdk_root, "sky130A/libs.tech/klayout/drc/sky130A_mr.drc")
+
+# Execute rule deck with source already configured
+eval(File.read(drc_deck), binding, drc_deck)

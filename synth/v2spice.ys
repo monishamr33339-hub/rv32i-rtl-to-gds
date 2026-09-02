@@ -1,0 +1,19 @@
+# synth/v2spice.ys
+
+# 1. Read Sky130 Liberty library
+read_liberty -lib /home/chaos/PDKs/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 2. Read synthesized structural netlist
+read_verilog netlist/rv32i_netlist.v
+
+# 3. Set top module hierarchy
+hierarchy -top pipeline_datapath
+
+# 4. Map top-level global power rails
+hilomap -hicell sky130_fd_sc_hd__conb_1 VPWR -locell sky130_fd_sc_hd__conb_1 VGND
+
+# 5. Write SPICE schematic netlist with valid flags
+write_spice -big_endian \
+            -pos VPWR \
+            -neg VGND \
+            netlist/rv32i_schematic.spice

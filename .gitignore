@@ -1,0 +1,257 @@
+# ============================================================
+
+# RV32I RTL-to-GDS ASIC Project
+
+# Git Ignore Rules
+
+# ============================================================
+
+# ------------------------------------------------------------
+
+# Operating system / editor files
+
+# ------------------------------------------------------------
+
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# ------------------------------------------------------------
+
+# Python
+
+# ------------------------------------------------------------
+
+**pycache**/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+env/
+
+# ------------------------------------------------------------
+
+# General logs and temporary files
+
+# ------------------------------------------------------------
+
+*.log
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+
+# ------------------------------------------------------------
+
+# Yosys temporary / generated files
+
+# ------------------------------------------------------------
+
+*.il
+*.json
+*.dot
+*.rtlil
+*.blif
+
+# Keep the final synthesized netlist if explicitly stored in:
+
+# netlist/
+
+!netlist/rv32i_netlist.v
+
+# ------------------------------------------------------------
+
+# OpenROAD / OpenSTA temporary files
+
+# ------------------------------------------------------------
+
+*.odb
+*.db
+*.sdc.bak
+*.swp
+
+# OpenROAD temporary outputs
+
+.openroad/
+openroad_tmp/
+tmp/
+
+# ------------------------------------------------------------
+
+# KLayout temporary / session files
+
+# ------------------------------------------------------------
+
+*.lyp~
+*.lyt~
+*.lvsdb~
+*.drcdb~
+*.lvsdb.bak
+
+# KLayout temporary databases
+
+*.lyrdb
+
+# ------------------------------------------------------------
+
+# Magic temporary files
+
+# ------------------------------------------------------------
+
+*.magic
+*.mag
+*.ext~
+*.sim
+*.nodes
+*.con
+
+# ------------------------------------------------------------
+
+# Netgen temporary files
+
+# ------------------------------------------------------------
+
+*.netgen
+*.setup~
+*.comp.out
+
+# ------------------------------------------------------------
+
+# Generic generated extraction files
+
+# ------------------------------------------------------------
+
+*.extracted
+*.extracted.spice
+*.extracted.cir
+
+# ------------------------------------------------------------
+
+# Large intermediate build directories
+
+# ------------------------------------------------------------
+
+build/
+out/
+output/
+work/
+results/tmp/
+results/work/
+
+# ------------------------------------------------------------
+
+# Temporary simulation files
+
+# ------------------------------------------------------------
+
+sim/
+simulation/
+waves/
+*.vcd
+*.fst
+*.wlf
+*.vpd
+
+# ------------------------------------------------------------
+
+# Coverage
+
+# ------------------------------------------------------------
+
+coverage/
+*.gcda
+*.gcno
+*.gcov
+
+# ------------------------------------------------------------
+
+# Package / dependency caches
+
+# ------------------------------------------------------------
+
+node_modules/
+.cache/
+
+# ------------------------------------------------------------
+
+# ASIC PDK
+
+# ------------------------------------------------------------
+
+# NEVER commit the complete SKY130A PDK into this repository.
+
+PDK/
+pdk/
+pdks/
+
+# If a local PDK is accidentally placed inside the project:
+
+sky130A/
+sky130/
+
+# ------------------------------------------------------------
+
+# Large generated physical-design files
+
+# ------------------------------------------------------------
+
+# Ignore temporary GDS/DEF copies.
+
+*.gds~
+*.def~
+*.lef~
+*.lib~
+
+# ------------------------------------------------------------
+
+# Keep important project deliverables
+
+# ------------------------------------------------------------
+
+!results/
+!results/final/
+!results/final/rv32i_final.def
+!results/final/rv32i_final.gds
+
+!reports/
+!reports/*.rpt
+
+!docs/
+!docs/*.png
+!docs/*.jpg
+!docs/*.jpeg
+!docs/*.md
+
+# ------------------------------------------------------------
+
+# Secrets / credentials
+
+# ------------------------------------------------------------
+
+.env
+.env.*
+*.pem
+*.key
+*.secret
+credentials.json
+secrets.json
+
+# ------------------------------------------------------------
+
+# OS / miscellaneous
+
+# ------------------------------------------------------------
+
+*.orig
+*.rej
+*.class
+.DS_Store
+Thumbs.db
+desktop.ini

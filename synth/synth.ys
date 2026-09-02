@@ -1,0 +1,137 @@
+#################################################
+# RV32I Pipeline CPU
+# Yosys Synthesis Script
+# Sky130 Standard Cell Mapping
+#################################################
+
+
+#################################################
+# Read RTL
+#################################################
+
+read_verilog -sv rtl/rv32i_defs.svh
+
+read_verilog -sv rtl/alu.sv
+read_verilog -sv rtl/alu_control.sv
+read_verilog -sv rtl/control.sv
+read_verilog -sv rtl/decoder.sv
+
+read_verilog -sv rtl/regfile.sv
+read_verilog -sv rtl/immgen.sv
+read_verilog -sv rtl/pc.sv
+
+read_verilog -sv rtl/instruction_memory.sv
+read_verilog -sv rtl/data_memory.sv
+
+
+read_verilog -sv rtl/if_id_register.sv
+read_verilog -sv rtl/id_ex_register.sv
+read_verilog -sv rtl/ex_mem_register.sv
+read_verilog -sv rtl/mem_wb_register.sv
+
+
+read_verilog -sv rtl/hazard_detection_unit.sv
+read_verilog -sv rtl/forwarding_unit.sv
+
+
+read_verilog -sv rtl/pipeline_datapath.sv
+
+
+
+#################################################
+# Set Top Module
+#################################################
+
+hierarchy -top pipeline_datapath
+
+
+
+#################################################
+# RTL Optimization
+#################################################
+
+proc
+opt
+
+
+
+#################################################
+# Flatten Design
+#################################################
+
+flatten
+opt_clean
+
+
+
+#################################################
+# Memory Handling
+#################################################
+
+memory
+opt
+
+
+
+#################################################
+# Technology Mapping
+#################################################
+
+techmap
+opt
+
+
+
+#################################################
+# Map Flip Flops First
+#################################################
+
+dfflibmap \
+-liberty /home/chaos/OpenSTA/test/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+
+
+#################################################
+# Logic Mapping
+#################################################
+
+abc \
+-liberty /home/chaos/OpenSTA/test/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+
+
+#################################################
+# Cleanup
+#################################################
+
+rename -enumerate
+
+opt_clean
+
+
+
+#################################################
+# Statistics
+#################################################
+
+stat
+
+
+
+#################################################
+# Write Netlist
+#################################################
+
+write_verilog \
+-noattr \
+-noexpr \
+-simple-lhs \
+netlist/rv32i_netlist.v
+
+
+stat
+tee -o reports/yosys_stat.rpt stat
+
+log "======================================"
+log " RV32I SYNTHESIS COMPLETE "
+log "======================================"
